@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605212040) do
+ActiveRecord::Schema.define(version: 20160605215730) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160605212040) do
 
   create_table "floorplans", force: :cascade do |t|
     t.string   "image"
-    t.boolean  "client_approved"
+    t.boolean  "client_approved", default: false
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -10,16 +10,22 @@
     <table class="table table-striped table-hover">
       <tr>
         <th>Image</th>
-        <th>Client approved</th>
         <th>Project</th>
+        <th>Client Username</th>
+        <th>Client Approved?</th>
         <th>Actions</th>
       </tr>
 
       <% @floorplans.each do |floorplan| %>
       <tr>
-        <td><%= floorplan.image %></td>
+        <td><img src="<%= floorplan.image %>" height = 200px></td>
+        <td>
+          <%= "#{floorplan.project.project_name} - #{floorplan.project.room_type}" %>
+        </td>
+        <td>
+          <%= floorplan.project.users.where({ :designer => false }).pluck(:username)[0].capitalize %>
+        </td>
         <td><%= floorplan.client_approved %></td>
-        <td><%= floorplan.project_id %></td>
         <td>
           <a href="/floorplans/<%= floorplan.id %>" class="btn btn-primary">Show</a>
           <a href="/floorplans/<%= floorplan.id %>/edit" class="btn btn-warning">Edit</a>
