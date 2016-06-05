@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  root "projects#my_projects"
+
   # Routes for the Project resource:
   # CREATE
+  get "/my_projects", :controller => "projects", :action => "my_projects"
+
   get "/projects/new", :controller => "projects", :action => "new"
   post "/create_project", :controller => "projects", :action => "create"
 

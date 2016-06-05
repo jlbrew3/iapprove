@@ -1,15 +1,16 @@
 <!-- Validation failure messages -->
 <% if @project.errors.any? %>
-  <% @project.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @project.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Project #<%= @project.id %></h3>
+  <h3><%= @project.project_name %></h3>
+  <p><i>Current Status: <%= @project.project_status %></i></p>
 </div>
 
 <div class="row">
@@ -18,28 +19,30 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for notes -->
+
+      <!-- Label and input for project_name -->
       <div class="form-group">
-        <label for="notes" class="control-label">
-          Notes
+        <label for="project_name" class="control-label">
+          Project Name
         </label>
 
-        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @project.notes %></textarea>
+        <input type="text" id="project_name" name="project_name" placeholder="Project name" class="form-control" value="<%= @project.project_name %>">
       </div>
 
-      <!-- Label and input for project_status -->
+
+      <!-- Label and input for room_type -->
       <div class="form-group">
-        <label for="project_status" class="control-label">
-          Project status
+        <label for="room_type" class="control-label">
+          Room Type
         </label>
 
-        <input type="text" id="project_status" name="project_status" placeholder="Project status" class="form-control" value="<%= @project.project_status %>">
+        <input type="text" id="room_type" name="room_type" placeholder="Room type" class="form-control" value="<%= @project.room_type %>">
       </div>
 
       <!-- Label and input for favorite_style -->
       <div class="form-group">
         <label for="favorite_style" class="control-label">
-          Favorite style
+          Favorite Style
         </label>
 
         <input type="text" id="favorite_style" name="favorite_style" placeholder="Favorite style" class="form-control" value="<%= @project.favorite_style %>">
@@ -54,23 +57,27 @@
         <input type="text" id="budget" name="budget" placeholder="Budget" class="form-control" value="<%= @project.budget %>">
       </div>
 
-      <!-- Label and input for room_type -->
+      <!-- Label and input for notes -->
       <div class="form-group">
-        <label for="room_type" class="control-label">
-          Room type
+        <label for="notes" class="control-label">
+          Notes
         </label>
 
-        <input type="text" id="room_type" name="room_type" placeholder="Room type" class="form-control" value="<%= @project.room_type %>">
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @project.notes %></textarea>
       </div>
 
-      <!-- Label and input for project_name -->
+      <!-- Label and input for project_status -->
+      <% if current_user.designer? %>
       <div class="form-group">
-        <label for="project_name" class="control-label">
-          Project name
+        <label for="project_status" class="control-label">
+          Project status
         </label>
 
-        <input type="text" id="project_name" name="project_name" placeholder="Project name" class="form-control" value="<%= @project.project_name %>">
+        <input type="text" id="project_status" name="project_status" placeholder="Project status" class="form-control" value="<%= @project.project_status %>">
       </div>
+      <% else %>
+        <input type="hidden" name="project_status" value="<%= @project.project_status %>">
+      <% end %>
 
       <button class="btn btn-warning">
         Update Project

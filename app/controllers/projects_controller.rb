@@ -1,6 +1,11 @@
 class ProjectsController < ApplicationController
   def index
     @projects = Project.all
+    @user = User.find(current_user.id)
+  end
+
+  def my_projects
+    @user = User.find(current_user.id)
   end
 
   def show
@@ -21,7 +26,7 @@ class ProjectsController < ApplicationController
     @project.project_name = params[:project_name]
 
     if @project.save
-      redirect_to "/projects", :notice => "Project created successfully."
+      redirect_to "/my_projects", :notice => "Project created successfully."
     else
       render 'new'
     end
@@ -42,7 +47,7 @@ class ProjectsController < ApplicationController
     @project.project_name = params[:project_name]
 
     if @project.save
-      redirect_to "/projects", :notice => "Project updated successfully."
+      redirect_to "/my_projects", :notice => "Project updated successfully."
     else
       render 'edit'
     end
@@ -53,6 +58,6 @@ class ProjectsController < ApplicationController
 
     @project.destroy
 
-    redirect_to "/projects", :notice => "Project deleted."
+    redirect_to "/my_projects", :notice => "Project deleted."
   end
 end
