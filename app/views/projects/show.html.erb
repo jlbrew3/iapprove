@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Project #<%= @project.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Notes</dt>
+      <dd><%= @project.notes %></dd>
+
+      <dt>Project status</dt>
+      <dd><%= @project.project_status %></dd>
+
+      <dt>Favorite style</dt>
+      <dd><%= @project.favorite_style %></dd>
+
+      <dt>Budget</dt>
+      <dd><%= @project.budget %></dd>
+
+      <dt>Room type</dt>
+      <dd><%= @project.room_type %></dd>
+
+      <dt>Project name</dt>
+      <dd><%= @project.project_name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/projects" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/projects/<%= @project.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_project/<%= @project.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>
+    Floorplans
+    <a href="/floorplans/new" class="btn btn-lg btn-success">New Floorplan</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Image</th>
+        <th>Client approved</th>
+        <th>Project</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @floorplans.each do |floorplan| %>
+      <tr>
+        <td><%= floorplan.image %></td>
+        <td><%= floorplan.client_approved %></td>
+        <td><%= floorplan.project_id %></td>
+        <td>
+          <a href="/floorplans/<%= floorplan.id %>" class="btn btn-primary">Show</a>
+          <a href="/floorplans/<%= floorplan.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_floorplan/<%= floorplan.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

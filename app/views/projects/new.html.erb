@@ -1,0 +1,82 @@
+<!-- Validation failure messages -->
+<% if @project.errors.any? %>
+  <% @project.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Project</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_project" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @project.notes %></textarea>
+      </div>
+
+      <!-- Label and input for project_status -->
+      <div class="form-group">
+        <label for="project_status" class="control-label">
+          Project status
+        </label>
+
+        <input type="text" id="project_status" name="project_status" placeholder="Project status" class="form-control" value="<%= @project.project_status %>">
+      </div>
+
+      <!-- Label and input for favorite_style -->
+      <div class="form-group">
+        <label for="favorite_style" class="control-label">
+          Favorite style
+        </label>
+
+        <input type="text" id="favorite_style" name="favorite_style" placeholder="Favorite style" class="form-control" value="<%= @project.favorite_style %>">
+      </div>
+
+      <!-- Label and input for budget -->
+      <div class="form-group">
+        <label for="budget" class="control-label">
+          Budget
+        </label>
+
+        <input type="text" id="budget" name="budget" placeholder="Budget" class="form-control" value="<%= @project.budget %>">
+      </div>
+
+      <!-- Label and input for room_type -->
+      <div class="form-group">
+        <label for="room_type" class="control-label">
+          Room type
+        </label>
+
+        <input type="text" id="room_type" name="room_type" placeholder="Room type" class="form-control" value="<%= @project.room_type %>">
+      </div>
+
+      <!-- Label and input for project_name -->
+      <div class="form-group">
+        <label for="project_name" class="control-label">
+          Project name
+        </label>
+
+        <input type="text" id="project_name" name="project_name" placeholder="Project name" class="form-control" value="<%= @project.project_name %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Project
+      </button>
+      or
+      <a href="/projects">Cancel</a>
+    </form>
+  </div>
+</div>
