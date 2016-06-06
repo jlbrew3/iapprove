@@ -5,7 +5,20 @@ class ProjectsController < ApplicationController
   end
 
   def my_projects
+    @projects = Project.all
     @user = User.find(current_user.id)
+  end
+
+  def accept
+    redirect_to "/my_projects", :notice => "Project accepted."
+    designer_owner = Ownership.new
+    designer_owner.project_id = params[:id]
+    designer_owner.user_id = current_user.id
+    designer_owner.save
+
+    project_in_question = Project.find(params[:id])
+    project_in_question.project_status = "Accepted"
+    project_in_question.save
   end
 
   def show
@@ -27,6 +40,10 @@ class ProjectsController < ApplicationController
 
     if @project.save
       redirect_to "/my_projects", :notice => "Project created successfully."
+      client_owner = Ownership.new
+      client_owner.project_id = @project.id
+      client_owner.user_id = current_user.id
+      client_owner.save
     else
       render 'new'
     end

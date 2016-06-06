@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/projects", :controller => "projects", :action => "index"
   get "/projects/:id", :controller => "projects", :action => "show"
 
+  get "/projects/accept/:id", :controller => "projects", :action => "accept"
+
   # UPDATE
   get "/projects/:id/edit", :controller => "projects", :action => "edit"
   post "/update_project/:id", :controller => "projects", :action => "update"
