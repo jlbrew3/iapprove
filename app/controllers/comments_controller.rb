@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment.floorplan_id = params[:floorplan_id]
 
     if @comment.save
-      redirect_to "/comments", :notice => "Comment created successfully."
+      redirect_to request.referrer, :notice => "Comment created successfully."
     else
       render 'new'
     end

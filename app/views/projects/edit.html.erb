@@ -45,7 +45,7 @@
           Favorite Style
         </label>
 
-        <input type="text" id="favorite_style" name="favorite_style" placeholder="Favorite style" class="form-control" value="<%= @project.favorite_style %>">
+        <%= select_tag :favorite_style, options_for_select(["American Colonial", "Arabian", "Art Deco", "Art Nouveau", "Arts and Craft", "Chinese", "English Country", "French" , "French Gothic", "Gothic", "Indian", "Industrial", "Japanese", "Medieval", "Minimalist", "Modern", "Moroccan", "Rustic", "Scandanavian Country", "Scandanavian Modern", "Shabby Chic", "Shaker", "Southwestern", "Spanish", "Traditional", "Tuscan", "Victorian", "Vintage", "Zen"], @project.favorite_style) %>
       </div>
 
       <!-- Label and input for budget -->
