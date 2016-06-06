@@ -19,6 +19,7 @@
       <tr>
         <th>Project Name</th>
         <th>Room Type</th>
+        <th>Designer Name</th>
         <th>Project Status</th>
         <th>Actions</th>
       </tr>
@@ -27,6 +28,15 @@
       <tr>
         <td><%= project.project_name %></td>
         <td><%= project.room_type %></td>
+
+        <% if project.project_status != "Requested" %>
+          <td>
+            <%= project.users.where({ :designer => true }).pluck(:username)[0].capitalize %>
+          </td>
+        <% else %>
+          <td><i>Not Yet Assigned</i></td>
+        <% end %>
+
         <td><%= project.project_status %></td>
         <td>
           <a href="/projects/<%= project.id %>" class="btn btn-primary">Show</a>

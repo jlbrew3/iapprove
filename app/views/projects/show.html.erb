@@ -1,28 +1,28 @@
 <div class="page-header">
-  <h3>Project #<%= @project.id %></h3>
+  <h3><%= @project.project_name %></h3>
+  <p><i>Current Status: <%= @project.project_status %></i></p>
 </div>
 
 <div class="row">
   <div class="col-md-6">
     <dl class="dl-horizontal">
-      <dt>Notes</dt>
-      <dd><%= @project.notes %></dd>
+      <dt>Project Name</dt>
+      <dd><%= @project.project_name %></dd>
 
-      <dt>Project status</dt>
-      <dd><%= @project.project_status %></dd>
+      <dt>Room Type</dt>
+      <dd><%= @project.room_type %></dd>
 
-      <dt>Favorite style</dt>
+      <dt>Designer Name</dt>
+      <dd><%= @project.users.where({ :designer => true }).pluck(:username)[0].capitalize %></dd>
+
+      <dt>Favorite Style</dt>
       <dd><%= @project.favorite_style %></dd>
 
       <dt>Budget</dt>
       <dd><%= @project.budget %></dd>
 
-      <dt>Room type</dt>
-      <dd><%= @project.room_type %></dd>
-
-      <dt>Project name</dt>
-      <dd><%= @project.project_name %></dd>
-
+      <dt>Notes</dt>
+      <dd><%= @project.notes %></dd>
     </dl>
 
     <div class="btn-group btn-group-justified">
@@ -32,9 +32,11 @@
       <a href="/projects/<%= @project.id %>/edit" class="btn btn-warning">
         Edit
       </a>
-      <a href="/delete_project/<%= @project.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <% if current_user.designer? %>
+        <a href="/delete_project/<%= @project.id %>" class="btn btn-danger" rel="nofollow">
+          Delete
+        </a>
+      <% end %>
     </div>
   </div>
   <div class="col-md-6">
