@@ -37,6 +37,10 @@ Rails.application.routes.draw do
 
   # DELETE
   get "/delete_floorplan/:id", :controller => "floorplans", :action => "destroy"
+
+  # APPROVALS
+  get "/approve_floorplan/:id", :controller => "floorplans", :action => "approve_floorplan"
+  get "/revoke_approval/:id", :controller => "floorplans", :action => "revoke_approval"
   #------------------------------
 
   # Routes for the Comment resource:

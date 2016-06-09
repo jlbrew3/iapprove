@@ -59,12 +59,32 @@
 
         <div class="panel panel-default">
           <div class="panel-body text-center">
-            <div class="btn-group" role="group" aria-label="">
-              <a href="TBD" class="btn btn-success">&nbsp&nbsp&nbsp&nbspI Approve&nbsp&nbsp&nbsp&nbsp</a>
+            <div class="panel panel-default">
+              <div class="panel-body text-center">
+                Current Approval Status:
+                <strong>
+                  <% if floorplan.client_approved == true %>
+                    Approved!
+                  <% else %>
+                    Awaiting Approval
+                  <% end %>
+                </strong>
+              </div>
             </div>
-            <div class="btn-group" role="group" aria-label="">
-              <a href="TBD" class="btn btn-danger">Needs More Work</a>
-            </div>
+
+            <% if floorplan.client_approved == true %>
+              <div class="btn-group btn-group-justified" role="group" aria-label="">
+                <a href="/revoke_approval/<%= floorplan.id %>" class="btn btn-danger">
+                  On Second Thought, Needs More Work
+                </a>
+              </div>
+            <% else %>
+              <div class="btn-group btn-group-justified" role="group" aria-label="">
+                <a href="/approve_floorplan/<%= floorplan.id %>" class="btn btn-success">
+                  I Approve
+                </a>
+              </div>
+            <% end %>
           </div>
         </div>
 

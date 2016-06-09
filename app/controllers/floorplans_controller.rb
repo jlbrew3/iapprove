@@ -49,4 +49,20 @@ class FloorplansController < ApplicationController
 
     redirect_to "/floorplans", :notice => "Floorplan deleted."
   end
+
+  def approve_floorplan
+    @floorplan = Floorplan.find(params[:id])
+    @floorplan.client_approved = true
+    @floorplan.save
+
+    redirect_to request.referrer, :notice => "Floorplan approved."
+  end
+
+  def revoke_approval
+    @floorplan = Floorplan.find(params[:id])
+    @floorplan.client_approved = false
+    @floorplan.save
+
+    redirect_to request.referrer, :notice => "Approval revoked."
+  end
 end
