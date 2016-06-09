@@ -47,6 +47,6 @@ class CommentsController < ApplicationController
 
     @comment.destroy
 
-    redirect_to "/comments", :notice => "Comment deleted."
+    redirect_to request.referrer, :notice => "Comment deleted."
   end
 end
