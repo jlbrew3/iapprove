@@ -55,13 +55,23 @@
             <td>
               <% if current_user.designer? == false %>
                 <% if project.project_status != "Requested" %>
-                  <a href="/projects/<%= project.id %>" class="btn btn-primary">Show</a>
-                  <a href="/projects/<%= project.id %>/edit" class="btn btn-warning">Edit</a>
+                  <a href="/projects/<%= project.id %>" class="btn btn-primary">
+                    Show Details
+                  </a>
+                  <a href="/projects/<%= project.id %>/edit" class="btn btn-warning">
+                    Edit
+                  </a>
                 <% end %>
               <% else %>
-                <a href="/projects/<%= project.id %>" class="btn btn-primary">Show</a>
-                <a href="/projects/<%= project.id %>/edit" class="btn btn-warning">Edit</a>
-                <a href="/delete_project/<%= project.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+                <a href="/projects/<%= project.id %>" class="btn btn-primary">
+                  Show Details
+                </a>
+                <a href="/projects/<%= project.id %>/edit" class="btn btn-warning">
+                  Edit
+                </a>
+                <a href="/delete_project/<%= project.id %>" class="btn btn-danger" rel="nofollow">
+                  Delete
+                </a>
               <% end %>
             </td>
           </tr>

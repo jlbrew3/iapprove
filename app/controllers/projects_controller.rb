@@ -26,6 +26,8 @@ class ProjectsController < ApplicationController
     project_in_question = Project.find(params[:id])
     project_in_question.project_status = "Completed"
     project_in_question.save
+
+    redirect_to "/my_projects", :notice => "Project marked as completed."
   end
 
   def show
@@ -46,7 +48,7 @@ class ProjectsController < ApplicationController
     @project.project_name = params[:project_name]
 
     if @project.save
-      redirect_to "/my_projects", :notice => "Project created successfully."
+      redirect_to "/my_projects", :notice => "Project requested successfully."
       client_owner = Ownership.new
       client_owner.project_id = @project.id
       client_owner.user_id = current_user.id
