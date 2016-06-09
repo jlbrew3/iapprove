@@ -70,10 +70,10 @@
       <% if current_user.designer? %>
       <div class="form-group">
         <label for="project_status" class="control-label">
-          Project status
+          Project Status
         </label>
 
-        <input type="text" id="project_status" name="project_status" placeholder="Project status" class="form-control" value="<%= @project.project_status %>">
+        <%= select_tag :project_status, options_for_select(["Requested","Accepted", "Active", "Completed"], @project.project_status) %>
       </div>
       <% else %>
         <input type="hidden" name="project_status" value="<%= @project.project_status %>">

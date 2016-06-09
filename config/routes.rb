@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post "/create_project", :controller => "projects", :action => "create"
 
   # READ
-  get "/projects", :controller => "projects", :action => "index"
+  # get "/projects", :controller => "projects", :action => "index"
   get "/projects/:id", :controller => "projects", :action => "show"
 
   get "/projects/accept/:id", :controller => "projects", :action => "accept"
@@ -24,11 +24,11 @@ Rails.application.routes.draw do
 
   # Routes for the Floorplan resource:
   # CREATE
-  get "/floorplans/new", :controller => "floorplans", :action => "new"
+  get "/floorplans/new/:id", :controller => "floorplans", :action => "new"
   post "/create_floorplan", :controller => "floorplans", :action => "create"
 
   # READ
-  get "/floorplans", :controller => "floorplans", :action => "index"
+  # get "/floorplans", :controller => "floorplans", :action => "index"
   get "/floorplans/:id", :controller => "floorplans", :action => "show"
 
   # UPDATE
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   post "/create_comment", :controller => "comments", :action => "create"
 
   # READ
-  get "/comments", :controller => "comments", :action => "index"
+  # get "/comments", :controller => "comments", :action => "index"
   get "/comments/:id", :controller => "comments", :action => "show"
 
   # UPDATE
@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   post "/create_ownership", :controller => "ownerships", :action => "create"
 
   # READ
-  get "/ownerships", :controller => "ownerships", :action => "index"
+  # get "/ownerships", :controller => "ownerships", :action => "index"
   get "/ownerships/:id", :controller => "ownerships", :action => "show"
 
   # UPDATE

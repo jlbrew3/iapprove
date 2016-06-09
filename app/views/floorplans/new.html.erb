@@ -41,7 +41,7 @@
           Relevant Project
         </label>
 
-        <%= collection_select(:floorplan, :project_id, Project.all, :id, :project_name, {:prompt => 'Select A Project'}, {:name => "project_id", :id => "project_id"}) %>
+        <%= collection_select(:floorplan, :project_id, Project.all, :id, :project_name, {:prompt => 'Select A Project', :selected => params[:id].to_i}, {:name => "project_id", :id => "project_id"}) %>
 
       </div>
 

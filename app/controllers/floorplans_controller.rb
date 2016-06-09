@@ -47,7 +47,7 @@ class FloorplansController < ApplicationController
 
     @floorplan.destroy
 
-    redirect_to "/floorplans", :notice => "Floorplan deleted."
+    redirect_to request.referrer, :notice => "Floorplan deleted."
   end
 
   def approve_floorplan

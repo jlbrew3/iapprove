@@ -5,25 +5,37 @@
 
 <div class="row">
   <div class="col-md-6">
-    <dl class="dl-horizontal">
-      <dt>Project Name</dt>
-      <dd><%= @project.project_name %></dd>
+    <table class="table">
+      <tr>
+        <td><strong>Project Name</strong><strong></td>
+        <td><%= @project.project_name %></td>
+      </tr>
 
-      <dt>Room Type</dt>
-      <dd><%= @project.room_type %></dd>
+      <tr>
+        <td><strong>Room Type</strong></td>
+        <td><%= @project.room_type %></td>
+      </tr>
 
-      <dt>Designer Name</dt>
-      <dd><%= @project.users.where({ :designer => true }).pluck(:username)[0].capitalize %></dd>
+      <tr>
+        <td><strong>Designer Name</strong></td>
+        <td><%= @project.users.where({ :designer => true }).pluck(:username)[0].capitalize %></td>
+      </tr>
 
-      <dt>Favorite Style</dt>
-      <dd><%= @project.favorite_style %></dd>
+      <tr>
+        <td><strong>Favorite Style</strong></td>
+        <td><%= @project.favorite_style %></td>
+      </tr>
 
-      <dt>Budget</dt>
-      <dd><%= @project.budget %></dd>
+      <tr>
+        <td><strong>Budget</strong></td>
+        <td><%= @project.budget %></td>
+      </tr>
 
-      <dt>Notes</dt>
-      <dd><%= @project.notes %></dd>
-    </dl>
+      <tr>
+        <td><strong>Notes</strong></td>
+        <td><%= @project.notes %></td>
+      </tr>
+    </table>
 
     <div class="btn-group btn-group-justified">
       <a href="/my_projects" class="btn btn-primary">
@@ -39,7 +51,15 @@
       <% end %>
     </div>
   </div>
+
+
   <div class="col-md-6">
+      <a href="/floorplans/new/<%= @project.id %>" class="btn btn-default btn-block">
+        <i class="fa fa-plus"></i>
+      </a>
+
+      <p></p>
+
     <% @project.floorplans.each do |floorplan| %>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -48,6 +68,11 @@
           <small>
             <%= time_ago_in_words(floorplan.created_at) %> ago
           </small>
+          <% if floorplan.project.users.where({ :designer => true }).pluck(:username)[0] == current_user.username %>
+            <small class="pull-right">
+              <a href="/delete_floorplan/<%= floorplan.id %>">Delete Floorplan</a>
+            </small>
+          <% end %>
         </h3>
       </div>
 
@@ -72,21 +97,24 @@
               </div>
             </div>
 
-            <% if floorplan.client_approved == true %>
-              <div class="btn-group btn-group-justified" role="group" aria-label="">
-                <a href="/revoke_approval/<%= floorplan.id %>" class="btn btn-danger">
-                  On Second Thought, Needs More Work
-                </a>
-              </div>
-            <% else %>
-              <div class="btn-group btn-group-justified" role="group" aria-label="">
-                <a href="/approve_floorplan/<%= floorplan.id %>" class="btn btn-success">
-                  I Approve
-                </a>
-              </div>
+            <% if current_user.designer? == false %>
+              <% if floorplan.client_approved == true %>
+                <div class="btn-group btn-group-justified" role="group" aria-label="">
+                  <a href="/revoke_approval/<%= floorplan.id %>" class="btn btn-danger">
+                    On Second Thought, Needs More Work
+                  </a>
+                </div>
+              <% else %>
+                <div class="btn-group btn-group-justified" role="group" aria-label="">
+                  <a href="/approve_floorplan/<%= floorplan.id %>" class="btn btn-success">
+                    I Approve
+                  </a>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
+
 
         <ul class="media-list">
           <% floorplan.comments.each do |comment| %>
