@@ -143,10 +143,10 @@
                   <small>
                     <%= time_ago_in_words(comment.created_at) %> ago
                   </small>
-                  <% if comment.user.id == current_user.id %>
-                  <small class="pull-right">
-                    <a href="/delete_comment/<%= comment.id %>">Delete Comment</a>
-                  </small>
+                  <% if comment.user.id == current_user.id && @project.project_status != "Completed"%>
+                    <small class="pull-right">
+                      <a href="/delete_comment/<%= comment.id %>">Delete Comment</a>
+                    </small>
                   <% end %>
                 </h6>
                 <%= comment.comment %>
