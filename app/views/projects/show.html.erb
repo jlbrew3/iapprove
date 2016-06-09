@@ -41,9 +41,11 @@
       <a href="/my_projects" class="btn btn-primary">
         Back
       </a>
-      <a href="/projects/<%= @project.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
+      <% if @project.project_status != "Completed" %>
+        <a href="/projects/<%= @project.id %>/edit" class="btn btn-warning">
+          Edit
+        </a>
+      <% end %>
       <% if current_user.designer? %>
         <a href="/delete_project/<%= @project.id %>" class="btn btn-danger" rel="nofollow">
           Delete
@@ -54,11 +56,13 @@
 
 
   <div class="col-md-6">
+    <% if current_user.designer? %>
       <a href="/floorplans/new/<%= @project.id %>" class="btn btn-default btn-block">
         <i class="fa fa-plus"></i>
       </a>
 
       <p></p>
+    <% end %>
 
     <% @project.floorplans.each do |floorplan| %>
     <div class="panel panel-default">
