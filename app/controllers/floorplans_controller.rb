@@ -16,9 +16,10 @@ class FloorplansController < ApplicationController
     @floorplan.image = params[:image]
     @floorplan.client_approved = params[:client_approved]
     @floorplan.project_id = params[:project_id]
+    for_rerouting = params[:project_id]
 
     if @floorplan.save
-      redirect_to "/floorplans", :notice => "Floorplan created successfully."
+      redirect_to "/projects/#{for_rerouting}", :notice => "Floorplan created successfully."
     else
       render 'new'
     end
@@ -36,7 +37,7 @@ class FloorplansController < ApplicationController
     @floorplan.project_id = params[:project_id]
 
     if @floorplan.save
-      redirect_to "/floorplans", :notice => "Floorplan updated successfully."
+      redirect_to request.referrer, :notice => "Floorplan updated successfully."
     else
       render 'edit'
     end

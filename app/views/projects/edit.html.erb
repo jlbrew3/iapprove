@@ -73,7 +73,7 @@
           Project Status
         </label>
 
-        <%= select_tag :project_status, options_for_select(["Requested","Accepted", "Active", "Completed"], @project.project_status) %>
+        <%= select_tag :project_status, options_for_select(["Requested", "Active", "Completed"], @project.project_status) %>
       </div>
       <% else %>
         <input type="hidden" name="project_status" value="<%= @project.project_status %>">

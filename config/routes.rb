@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   # get "/projects", :controller => "projects", :action => "index"
   get "/projects/:id", :controller => "projects", :action => "show"
 
+  # ACCEPT PROJECT
   get "/projects/accept/:id", :controller => "projects", :action => "accept"
+
+  # MARK COMPLETED
+  get "/projects/mark_complete/:id", :controller => "projects", :action => "mark_complete"
 
   # UPDATE
   get "/projects/:id/edit", :controller => "projects", :action => "edit"

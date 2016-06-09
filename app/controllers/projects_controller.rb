@@ -10,14 +10,21 @@ class ProjectsController < ApplicationController
   end
 
   def accept
-    redirect_to "/my_projects", :notice => "Project accepted."
     designer_owner = Ownership.new
     designer_owner.project_id = params[:id]
     designer_owner.user_id = current_user.id
     designer_owner.save
 
     project_in_question = Project.find(params[:id])
-    project_in_question.project_status = "Accepted"
+    project_in_question.project_status = "Active"
+    project_in_question.save
+
+    redirect_to "/my_projects", :notice => "Project accepted."
+  end
+
+  def mark_complete
+    project_in_question = Project.find(params[:id])
+    project_in_question.project_status = "Completed"
     project_in_question.save
   end
 
